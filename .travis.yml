@@ -16,7 +16,8 @@ script:
   - cd $TRAVIS_BUILD_DIR/source/rodemsdev.ui 
   - yarn
   - yarn test
-
+  - yarn build
+  
 deploy:
   # Use Github pages deploy process
   provider: pages
