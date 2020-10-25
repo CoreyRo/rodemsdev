@@ -1,6 +1,5 @@
 language: node_js
-node_js:
-  - 12.19.0
+node_js: stable
 
 # safelist
 branches:
@@ -10,7 +9,7 @@ branches:
 cache:
   yarn: true
   directories:
-    - node_modules
+    - ./source/rodemsdev.ui/node_modules
 
 script: 
-  - build.sh
+  - ./build.sh
