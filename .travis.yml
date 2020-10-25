@@ -1,9 +1,18 @@
+script: build.sh
 language: node_js
 node_js:
   - 8
+
+# safelist
+branches:
+  only:
+  - master
+
 cache:
+  yarn: true
   directories:
     - node_modules
+
 script:
   - yarn deploy
   - yarn test
