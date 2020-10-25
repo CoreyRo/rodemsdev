@@ -9,7 +9,7 @@ branches:
 cache:
   yarn: true
   directories:
-    - $TRAVIS_BUILD_DIR/rodemsdev/source/rodemsdev.ui/node_modules
+    - $TRAVIS_BUILD_DIR/source/rodemsdev.ui/node_modules
 
 script: 
-  - $TRAVIS_BUILD_DIR/rodemsdev/build.sh
+  - $TRAVIS_BUILD_DIR/build.sh
