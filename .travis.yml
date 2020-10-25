@@ -17,7 +17,7 @@ script:
   - yarn
   - yarn test
   - yarn build
-  
+
 deploy:
   # Use Github pages deploy process
   provider: pages
@@ -31,7 +31,6 @@ deploy:
   keep_history: true
   # Git branch on which it should deploy (master, gh-pages, foo...)
   target_branch: gh-pages
-  fqdn: rodems.dev
   verbose: true
   
   on:
