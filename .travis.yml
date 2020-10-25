@@ -12,5 +12,6 @@ cache:
     - $TRAVIS_BUILD_DIR/source/rodemsdev.ui/node_modules
 
 script: 
-  - $TRAVIS_BUILD_DIR/source/rodemsdev.ui yarn test
-  - $TRAVIS_BUILD_DIR/source/rodemsdev.ui yarn deploy
+  - cd $TRAVIS_BUILD_DIR/source/rodemsdev.ui 
+  - yarn test
+  - yarn deploy
