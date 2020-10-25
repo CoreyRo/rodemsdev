@@ -9,7 +9,7 @@ branches:
 cache:
   yarn: true
   directories:
-    - ./source/rodemsdev.ui/node_modules
+    - /source/rodemsdev.ui/node_modules
 
 script: 
-  - ./build.sh
+  - /build.sh
