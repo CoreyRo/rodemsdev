@@ -11,10 +11,8 @@ on:
 
 jobs:
   ci-build:
+    name: CI Build
     runs-on: ubuntu-latest
-
-    defaults:
-      working-directory: ./source/ui
         
     strategy:
       matrix:
@@ -26,6 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      working-directory: ./source/ui
     - run: yarn test:ci
     - run: yarn build --if-present
 
