@@ -5,18 +5,18 @@ name: Dev CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ feature/*, feature-fix/*, develop ]
   pull_request:
     branches: [ develop ]
 
 jobs:
-  build:
-
+  ci-build:
+    name: CI Build
     runs-on: ubuntu-latest
-
+        
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,6 +24,22 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn test:ci
-    - run: yarn build --if-present
 
+    - name: yarn install
+      working-directory: ./source/ui
+      run: yarn
+
+    - name: yarn test:ci
+      working-directory: ./source/ui
+      run: yarn test:ci
+
+    - name: Publish Unit Test Results
+      uses: check-run-reporter/action@v2.0.0
+        if: ${{ always() }}
+        with:
+          token: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
+          report: 'reports/junit/*.xml'
+
+    - name: yarn build
+      working-directory: ./source/ui
+      run: yarn build --if-present
