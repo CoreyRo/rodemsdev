@@ -24,7 +24,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        
+    - name: yarn install
       working-directory: ./source/ui
-    - run: yarn test:ci
-    - run: yarn build --if-present
+      run: yarn
 
+    - name: yarn test:ci
+      working-directory: ./source/ui
+      run: yarn test:ci
+
+    - name: yarn build
+      working-directory: ./source/ui
+      run: yarn build --if-present
