@@ -11,7 +11,8 @@ on:
 
 jobs:
   build:
-
+    env: 
+      working-directory: ./rodems.dev
     runs-on: ubuntu-latest
 
     strategy:
