@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     env: 
-      working-directory: ./rodems.dev
+      working-directory: ./source/ui
     runs-on: ubuntu-latest
 
     strategy:
