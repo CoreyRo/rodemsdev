@@ -10,20 +10,35 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  test: 
+    name: Run Tests
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [14.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
       working-directory: ./source/ui
+      uses: actions/checkout@v2
+      name: yarn test:ci
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn test:ci
+      - run: yarn test:ci
+
+  build:
+    name: Build Dev
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      working-directory: ./source/ui
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
     - run: yarn build --if-present
 
