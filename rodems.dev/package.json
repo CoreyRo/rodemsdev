@@ -1,6 +1,5 @@
 {
-  "name": "rodemsdev.ui",
-  "homepage":"https://coreyro.github.io/rodemsdev",
+  "name": "rodems.dev",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,10 +14,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --reporters=default --reporters=jest-junit",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -26,9 +23,6 @@
       "react-app/jest"
     ]
   },
-  "eslintIgnore": [
-    "reportWebVitals.js"
-  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -40,18 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.12.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "^6.14.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "gh-pages": "^3.1.0",
-    "jest-junit": "^12.0.0",
-    "prettier": "^2.1.2"
   }
 }
