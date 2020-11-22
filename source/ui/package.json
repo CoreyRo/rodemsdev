@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "rimraf ./build && react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "rimraf ./reports && react-scripts test --updateSnapshot --verbose --no-cache --coverage --watchAll --ci --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
+    "test:dev:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --watchAll --ci --updateSnapshot  --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
+    "test:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --ci --updateSnapshot --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
