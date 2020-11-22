@@ -35,20 +35,20 @@ jobs:
 
     - name: Publish Unit Test Results
       uses: check-run-reporter/action@v2.0.0
-        if: ${{ always() }}
-        with:
-          token: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
-          report: 'reports/junit/junit.xml'
+      if: ${{ always() }}
+      with:
+        token: ${{ secrets.CHECK_RUN_REPORTER_TOKEN }}
+        report: './source/ui/reports/junit/**/*.xml'
 
     - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./reports/coverage/clover.xml
-          flags: tests
-          name: codecov-umbrella
-          yml: ./codecov.yml
-          fail_ci_if_error: true
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./source/ui/reports/coverage/clover.xml
+        flags: tests
+        name: codecov-umbrella
+        yml: ./codecov.yml
+        fail_ci_if_error: true
 
     - name: yarn build
       working-directory: ./source/ui
