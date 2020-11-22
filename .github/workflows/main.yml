@@ -26,9 +26,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - uses: actions/cache@v2
-    with:
-      path: '**/node_modules'
-      key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: yarn install
       working-directory: ./source/ui
