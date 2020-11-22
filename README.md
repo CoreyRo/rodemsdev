@@ -33,8 +33,6 @@ yarn start
 
 [corey@rodems.dev](mailto:corey+ghreadme@rodems.dev?subject=I%20saw%20your%20rodems.dev.next%20repo)
 
-![GitHub followers](https://img.shields.io/github/followers/coreyro?label=follow&style=social) 
-
 <div style='display:flex;flex-flow:row nowrap;align-items:center;'><a href='https://discord.com/' aria-label='A link to discord.com'><img style='display:flex;' src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/91_Discord_logo_logos-512.png" alt="drawing" width="20" style=''/></a><span style='margin-left: 5px;'>Khrow#3699</span></div>
 
 ---
