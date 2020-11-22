@@ -55,6 +55,7 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./source/ui/reports/coverage/lcov.info
+        flags: tests
         name: codecov-umbrella
         yml: ./codecov.yml
         fail_ci_if_error: true
