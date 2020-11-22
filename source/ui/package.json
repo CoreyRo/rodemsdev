@@ -17,10 +17,25 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --ci --coverage --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=\"jest-junit\" --coverageDirectory=\"./reports/coverage\"",
+    "test:ci": "react-scripts test --verbose --ci --coverage --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=\"jest-junit\" --coverageDirectory=\"./reports/coverage\"",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/App.jsx",
+      "src/App.test.jsx",
+      "src/Components/**/*.js",
+      "src/Components/**/*.jsx",
+      "src/Pages/**/*.js",
+      "src/Pages/**/*.jsx",
+      "src/Utils/**/*.js",
+      "src/Utils/**/*.jsx",
+      "src/Logic/**/*.js",
+      "src/Logic/**/*.jsx",
+      "!**/index.js"
+    ]
   },
   "jest-junit": {
     "outputDirectory": "./reports/junit"
