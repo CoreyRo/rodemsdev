@@ -1,4 +1,9 @@
 # codecov.yml
 
 fixes:
-  - "/home/runner/work/rodemsdev/rodemsdev/::" # Correct paths
+  - "/home/runner/work/rodemsdev/rodemsdev/source/ui/::" # Correct paths
+
+ignore: 
+  - "/home/runner/work/rodemsdev/rodemsdev/source/ui/node_modules"
+  - "/home/runner/work/rodemsdev/rodemsdev/source/ui/src/reportWebVitals.js"
+  - "/home/runner/work/rodemsdev/rodemsdev/source/ui/src/setupTests.js"

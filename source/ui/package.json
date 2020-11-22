@@ -8,38 +8,42 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "gh-pages": "^3.1.0",
+    "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rimraf ./build && react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --verbose --ci --coverage --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=\"jest-junit\" --coverageDirectory=\"./reports/coverage\"",
+    "test:dev:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --watchAll --ci --updateSnapshot  --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
+    "test:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --ci --updateSnapshot --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "jest": {
+    "coverageReporters": ["json", "lcov"],
     "collectCoverageFrom": [
-      "src/App.jsx",
-      "src/App.test.jsx",
-      "src/Components/**/*.js",
-      "src/Components/**/*.jsx",
-      "src/Pages/**/*.js",
-      "src/Pages/**/*.jsx",
-      "src/Utils/**/*.js",
-      "src/Utils/**/*.jsx",
-      "src/Logic/**/*.js",
-      "src/Logic/**/*.jsx",
-      "!**/index.js"
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "!**/node_modules/**",
+      "!**/index.js",
+      "!**/reportWebVitals.js",
+      "!**/setupTests.js"
     ]
   },
   "jest-junit": {
     "outputDirectory": "./reports/junit"
+  },
+  "resolutions": {
+    "node-sass": "^5.0.0",
+    "styled-components": "^5"
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +76,7 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-junit": "^12.0.0",
     "jshint": "^2.12.0",
-    "prettier": "^2.2.0"
+    "prettier": "^2.2.0",
+    "rimraf": "^3.0.2"
   }
 }
