@@ -26,12 +26,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: yarn install
       working-directory: ./source/ui
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
 
     - name: yarn test:ci
@@ -42,7 +45,7 @@ jobs:
       uses: mikepenz/action-junit-report@v1
       if: ${{ always() }}
       with:
-        report_paths: '**/junut.xml'
+        report_paths: '**/junit.xml'
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload coverage to Codecov
