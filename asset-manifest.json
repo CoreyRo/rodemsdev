@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rodemsdev/static/css/main.394657ea.chunk.css",
+    "main.js": "/rodemsdev/static/js/main.8f2ef493.chunk.js",
+    "main.js.map": "/rodemsdev/static/js/main.8f2ef493.chunk.js.map",
+    "runtime-main.js": "/rodemsdev/static/js/runtime-main.dca4ac06.js",
+    "runtime-main.js.map": "/rodemsdev/static/js/runtime-main.dca4ac06.js.map",
+    "static/js/2.dbedd061.chunk.js": "/rodemsdev/static/js/2.dbedd061.chunk.js",
+    "static/js/2.dbedd061.chunk.js.map": "/rodemsdev/static/js/2.dbedd061.chunk.js.map",
+    "static/js/3.ce3231b6.chunk.js": "/rodemsdev/static/js/3.ce3231b6.chunk.js",
+    "static/js/3.ce3231b6.chunk.js.map": "/rodemsdev/static/js/3.ce3231b6.chunk.js.map",
+    "index.html": "/rodemsdev/index.html",
+    "static/css/main.394657ea.chunk.css.map": "/rodemsdev/static/css/main.394657ea.chunk.css.map",
+    "static/js/2.dbedd061.chunk.js.LICENSE.txt": "/rodemsdev/static/js/2.dbedd061.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dca4ac06.js",
+    "static/js/2.dbedd061.chunk.js",
+    "static/css/main.394657ea.chunk.css",
+    "static/js/main.8f2ef493.chunk.js"
+  ]
+}
