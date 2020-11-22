@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [![codecov](https://codecov.io/gh/CoreyRo/rodemsdev/branch/develop/graph/badge.svg?token=PY8FHI3RCW)](https://codecov.io/gh/CoreyRo/rodemsdev)
 
+[![Actions Status](https://github.com/coreyro/rodemsdev/workflows/CI-Build/badge.svg)](https://github.com/coreyro/rodemsdev/actions)
+
 ## Available Scripts
 
 In the project directory, you can run:
