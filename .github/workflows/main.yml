@@ -5,9 +5,13 @@ name: CI-Build
 
 on:
   push:
-    branches: [ feature/*, feature-fix/*, release-fix/* ]
+    branches: []
   pull_request:
     branches: [ develop, master, release/* ]
+  page_build:
+  release:
+    types:
+      - created
 
 jobs:
   ci-build:
