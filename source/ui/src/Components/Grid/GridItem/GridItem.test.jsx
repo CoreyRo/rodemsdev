@@ -145,4 +145,137 @@ describe('Grid Item Tests', () => {
     const gridItem = screen.getByText(innerText);
     expect(gridItem).toBeInTheDocument();
   });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('smPhone breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem smPhone`;
+    render(
+      <Grid>
+        <GridItem smPhone={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('phone breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem phone`;
+    render(
+      <Grid>
+        <GridItem phone={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('tablet breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem tablet`;
+    render(
+      <Grid>
+        <GridItem tablet={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('tabletHz breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem tabletHz`;
+    render(
+      <Grid>
+        <GridItem tabletHz={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('smDesktop breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem smDesktop`;
+    render(
+      <Grid>
+        <GridItem smDesktop={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('desktop breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem desktop`;
+    render(
+      <Grid>
+        <GridItem desktop={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
+
+  test.each`
+    prop          | val
+    ${'colStart'} | ${1}
+    ${'colSpans'} | ${1}
+    ${'rowStart'} | ${1}
+    ${'rowSpan'}  | ${1}
+  `('lgDesktop breakpoint: $prop: $val', ({ prop, val }) => {
+    const innerText = `griditem lgDesktop`;
+    render(
+      <Grid>
+        <GridItem lgDesktop={{ [prop]: val }} subGrid>
+          {innerText}
+        </GridItem>
+      </Grid>,
+    );
+    const gridItem = screen.getByText(innerText);
+    expect(gridItem).toBeInTheDocument();
+  });
 });

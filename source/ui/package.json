@@ -19,9 +19,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rimraf ./build && react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --verbose --ci --coverage --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=\"jest-junit\" --coverageDirectory=\"./reports/coverage\"",
+    "test:ci": "rimraf ./reports && react-scripts test --verbose --ci --coverage --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=\"jest-junit\" --coverageDirectory=\"./reports/coverage\"",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -79,6 +79,7 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-junit": "^12.0.0",
     "jshint": "^2.12.0",
-    "prettier": "^2.2.0"
+    "prettier": "^2.2.0",
+    "rimraf": "^3.0.2"
   }
 }
