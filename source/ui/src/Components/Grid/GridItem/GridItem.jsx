@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -5,95 +6,108 @@ import { breakpoints as bp } from '../../../Utils/CssVariables';
 
 const itemCfg = {
   rowStart: 'auto',
-  rowSpan: 1,
+  rowSpan: 'auto',
   colStart: 'auto',
-};
-
-const smCfg = {
-  ...itemCfg,
-  colSpan: 4,
-};
-
-const lgCfg = {
-  ...itemCfg,
-  colSpan: 12,
+  colSpan: 'auto',
 };
 
 const StyledDiv = styled.div`
-  display: grid;
-  ${(props) => (props.subGrid === true ? `grid-template-columns: inherit;grid-gap: inherit;` : '')}
+  ${(props) => `
+  display: ${props.hideMobile ? 'none' : 'grid'};
+  ${props.subGrid === true ? `grid-template-columns: inherit;grid-gap: inherit;` : ''}
 
-  grid-area: ${({ smPhone }) => smPhone.rowStart || 'auto'} /
-    ${({ smPhone }) => smPhone.colStart || itemCfg.colStart} / span
-    ${({ smPhone }) => smPhone.rowSpan || itemCfg.rowSpan} / span
-    ${({ smPhone }) => smPhone.colSpan || smCfg.colSpan};
+  grid-area: ${!isNaN(props.smPhone.rowStart) ? `span ${props.smPhone.rowStart}` : 'auto'} /
+  ${!isNaN(props.smPhone.colStart) ? `span ${props.smPhone.colStart}` : 'auto'} / 
+    ${!isNaN(props.smPhone.rowSpan) ? `span ${props.smPhone.rowSpan}` : 'auto'} / 
+    ${!isNaN(props.smPhone.colSpan) ? `span ${props.smPhone.colSpan}` : 'auto'};
 
-  ${(props) =>
-    props.phone !== null
-      ? `@media ${bp.PHONE} {
-    grid-area: ${props.phone.rowStart || 'auto'} / ${
-          props.phone.colStart || itemCfg.colStart
-        } / span
-      ${props.phone.rowSpan || itemCfg.rowSpan} / span ${props.phone.colSpan || smCfg.colSpan};
-  }`
-      : ``}
+    @media ${bp.PHONE} {
+      ${
+        props.phone !== null
+          ? `
+      grid-area: ${!isNaN(props.phone.rowStart) ? `span ${props.phone.rowStart}` : 'auto'} /
+      ${!isNaN(props.phone.colStart) ? `span ${props.phone.colStart}` : 'auto'} / 
+        ${!isNaN(props.phone.rowSpan) ? `span ${props.phone.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.phone.colSpan) ? `span ${props.phone.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
 
-  ${(props) =>
-    props.tablet !== null
-      ? `@media ${bp.TABLET} {
-      grid-area: ${props.tablet.rowStart || 'auto'} / ${
-          props.tablet.colStart || itemCfg.colStart
-        } / span
-        ${props.tablet.rowSpan || itemCfg.rowSpan} / span ${props.tablet.colSpan || smCfg.colSpan};
-    }`
-      : ``}
+    @media ${bp.TABLET} {
+      ${
+        props.tablet !== null
+          ? `
+      grid-area: ${!isNaN(props.tablet.rowStart) ? `span ${props.tablet.rowStart}` : 'auto'} /
+      ${!isNaN(props.tablet.colStart) ? `span ${props.tablet.colStart}` : 'auto'} / 
+        ${!isNaN(props.tablet.rowSpan) ? `span ${props.tablet.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.tablet.colSpan) ? `span ${props.tablet.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
 
-  @media ${bp.TABLET_LANDSCAPE} {
-    grid-area: ${(props) => props.tabletHz.rowStart || 'auto'} /
-      ${(props) => props.tabletHz.colStart || itemCfg.colStart} / span
-      ${(props) => props.tabletHz.rowSpan || itemCfg.rowSpan} / span
-      ${(props) => props.tabletHz.colSpan || itemCfg.colSpan};
-  }
+    @media ${bp.TABLET_LANDSCAPE} {
+      display: ${props.hideDesktop ? 'none' : 'grid'};
 
-  ${(props) =>
-    props.smDesktop !== null
-      ? `@media ${bp.SM_DESKTOP} {
-    grid-area: ${props.smDesktop.rowStart || 'auto'} / ${
-          props.smDesktop.colStart || itemCfg.colStart
-        } / span
-      ${props.smDesktop.rowSpan || itemCfg.rowSpan} / span ${
-          props.smDesktop.colSpan || itemCfg.colSpan
-        };
-  }`
-      : ``}
+      ${
+        props.tabletHz !== null
+          ? `
+      grid-area: ${!isNaN(props.tabletHz.rowStart) ? `span ${props.tabletHz.rowStart}` : 'auto'} /
+      ${!isNaN(props.tabletHz.colStart) ? `span ${props.tabletHz.colStart}` : 'auto'} / 
+        ${!isNaN(props.tabletHz.rowSpan) ? `span ${props.tabletHz.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.tabletHz.colSpan) ? `span ${props.tabletHz.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
 
-  ${(props) =>
-    props.desktop !== null
-      ? `@media ${bp.DESKTOP} {
-      grid-area: ${props.desktop.rowStart || 'auto'} / ${
-          props.desktop.colStart || itemCfg.colStart
-        } / span
-        ${props.desktop.rowSpan || itemCfg.rowSpan} / span ${
-          props.desktop.colSpan || itemCfg.colSpan
-        };
-    }`
-      : ``}
+    @media ${bp.SM_DESKTOP} {
+      ${
+        props.smDesktop !== null
+          ? `
+      grid-area: ${!isNaN(props.smDesktop.rowStart) ? `span ${props.smDesktop.rowStart}` : 'auto'} /
+      ${!isNaN(props.smDesktop.colStart) ? `span ${props.smDesktop.colStart}` : 'auto'} / 
+        ${!isNaN(props.smDesktop.rowSpan) ? `span ${props.smDesktop.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.smDesktop.colSpan) ? `span ${props.smDesktop.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
 
-  ${(props) =>
-    props.lgDesktop !== null
-      ? `@media ${bp.LG_DESKTOP} {
-        grid-area: ${props.lgDesktop.rowStart || 'auto'} / ${
-          props.lgDesktop.colStart || itemCfg.colStart
-        } / span
-          ${props.lgDesktop.rowSpan || itemCfg.rowSpan} / span ${
-          props.lgDesktop.colSpan || itemCfg.colSpan
-        };
-    }`
-      : ``}
+    @media ${bp.DESKTOP} {
+      ${
+        props.desktop !== null
+          ? `
+      grid-area: ${!isNaN(props.desktop.rowStart) ? `span ${props.desktop.rowStart}` : 'auto'} /
+      ${!isNaN(props.desktop.colStart) ? `span ${props.desktop.colStart}` : 'auto'} / 
+        ${!isNaN(props.desktop.rowSpan) ? `span ${props.desktop.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.desktop.colSpan) ? `span ${props.desktop.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
+
+    @media ${bp.LG_DESKTOP} {
+      ${
+        props.lgDesktop !== null
+          ? `
+      grid-area: ${!isNaN(props.lgDesktop.rowStart) ? `span ${props.lgDesktop.rowStart}` : 'auto'} /
+      ${!isNaN(props.lgDesktop.colStart) ? `span ${props.lgDesktop.colStart}` : 'auto'} / 
+        ${!isNaN(props.lgDesktop.rowSpan) ? `span ${props.lgDesktop.rowSpan}` : 'auto'} / 
+        ${!isNaN(props.lgDesktop.colSpan) ? `span ${props.lgDesktop.colSpan}` : 'auto'};
+      `
+          : ``
+      }
+    }
+  
+  `}
 `;
 
 const GridItem = ({
   subGrid,
+  hideMobile,
+  hideDesktop,
   smPhone,
   phone,
   tablet,
@@ -112,6 +126,8 @@ const GridItem = ({
     desktop={desktop}
     lgDesktop={lgDesktop}
     subGrid={subGrid}
+    hideMobile={hideMobile}
+    hideDesktop={hideDesktop}
   >
     {children}
   </StyledDiv>
@@ -119,9 +135,9 @@ const GridItem = ({
 
 const itemCfgTypes = {
   rowStart: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  rowSpan: PropTypes.number,
+  rowSpan: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   colStart: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
-  colSpan: PropTypes.number,
+  colSpan: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
 };
 
 GridItem.propTypes = {
@@ -134,17 +150,21 @@ GridItem.propTypes = {
   lgDesktop: PropTypes.shape(itemCfgTypes),
   subGrid: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  hideMobile: PropTypes.bool,
+  hideDesktop: PropTypes.bool,
 };
 
 GridItem.defaultProps = {
-  smPhone: smCfg,
+  smPhone: itemCfg,
   phone: null,
   tablet: null,
-  tabletHz: lgCfg,
+  tabletHz: itemCfg,
   smDesktop: null,
   desktop: null,
   lgDesktop: null,
   subGrid: false,
+  hideMobile: false,
+  hideDesktop: false,
 };
 
 export default GridItem;
