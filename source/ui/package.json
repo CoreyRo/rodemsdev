@@ -1,6 +1,6 @@
 {
   "name": "rodems.dev",
-  "homepage": "https://coreyro.github.io/rodemsdev",
+  "homepage": "https://www.rodems.dev",
   "license": "MIT",
   "version": "0.1.0",
   "private": false,
@@ -14,7 +14,6 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet-async": "^1.0.7",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
@@ -26,7 +25,8 @@
     "test:dev:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --watchAll --ci --updateSnapshot  --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "test:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --ci --updateSnapshot --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "eject": "react-scripts eject",
-    "predeploy": "yarn build",
+    "add-domain": "echo \"rodems.dev\" > build/CNAME",
+    "predeploy": "yarn build && yarn add-domain",
     "deploy": "gh-pages -d build"
   },
   "jest": {
