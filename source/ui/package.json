@@ -1,6 +1,7 @@
 {
   "name": "rodems.dev",
   "homepage": "https://coreyro.github.io/rodemsdev",
+  "license": "MIT",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
@@ -12,6 +13,7 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-helmet-async": "^1.0.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "styled-components": "^5.2.1",
@@ -24,11 +26,14 @@
     "test:dev:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --watchAll --ci --updateSnapshot  --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "test:ci": "rimraf ./reports && react-scripts test --verbose --no-cache --coverage --ci --updateSnapshot --reporters=default --reporters=jest-junit --env=jest-environment-jsdom-sixteen --testResultsProcessor=jest-junit --coverageDirectory=./reports/coverage",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
   "jest": {
-    "coverageReporters": ["json", "lcov"],
+    "coverageReporters": [
+      "json",
+      "lcov"
+    ],
     "collectCoverageFrom": [
       "src/**/*.js",
       "src/**/*.jsx",

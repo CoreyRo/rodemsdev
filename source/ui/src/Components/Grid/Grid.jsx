@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
   grid-gap: 1rem;
 
   @media ${bp.PHONE} {
-    padding: 32px;
+    ${(props) => (props.noPadding ? '' : 'padding: 32px;')}
   }
 
   @media ${bp.TABLET} {
@@ -28,18 +28,23 @@ const StyledDiv = styled.div`
 
   @media ${bp.DESKTOP_MAX} {
     margin: 0 auto;
-    max-width: 1680px;
-    padding: 32px 0;
+    ${(props) => (props.noPadding ? '' : 'padding: 32px 0;')}
+    ${(props) => (props.noPadding ? '' : 'max-width: 1680px;')}
   }
 
   @media ${bp.LG_DESKTOP} {
   }
 `;
 
-const Grid = ({ children }) => <StyledDiv>{children}</StyledDiv>;
+const Grid = ({ children, noPadding }) => <StyledDiv noPadding={noPadding}>{children}</StyledDiv>;
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
+  noPadding: PropTypes.bool,
+};
+
+Grid.defaultProps = {
+  noPadding: false,
 };
 
 export default Grid;
