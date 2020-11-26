@@ -16,7 +16,7 @@ const StyledItemDiv = styled.div`
   display: ${props.hideMobile ? 'none' : 'grid'};
   ${props.subGrid === true ? `grid-template-columns: inherit;grid-gap: inherit;` : ''}
   ${
-    props.phone !== null
+    props.smPhone !== null
       ? `
       grid-area: ${!isNaN(props.smPhone.rowStart) ? `${props.smPhone.rowStart}` : 'auto'} /
       ${!isNaN(props.smPhone.colStart) ? `${props.smPhone.colStart}` : 'auto'} / 
@@ -124,6 +124,7 @@ const GridItem = ({
   smDesktop,
   desktop,
   lgDesktop,
+  className,
   children,
 }) => (
   <StyledItemDiv
@@ -134,6 +135,7 @@ const GridItem = ({
     smDesktop={smDesktop}
     desktop={desktop}
     lgDesktop={lgDesktop}
+    className={className}
     subGrid={subGrid}
     hideMobile={hideMobile}
     hideDesktop={hideDesktop}
@@ -161,6 +163,7 @@ GridItem.propTypes = {
   children: PropTypes.node.isRequired,
   hideMobile: PropTypes.bool,
   hideDesktop: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 GridItem.defaultProps = {
@@ -174,6 +177,7 @@ GridItem.defaultProps = {
   subGrid: false,
   hideMobile: false,
   hideDesktop: false,
+  className: '',
 };
 
 export default GridItem;
