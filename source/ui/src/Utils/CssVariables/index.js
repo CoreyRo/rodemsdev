@@ -1,1 +1,1 @@
-export { color, breakpoints } from './CssVariables';
+export { color, breakpoints, cssBreakpoints } from './CssVariables';

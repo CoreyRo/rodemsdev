@@ -1,19 +1,14 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { breakpoints as bp } from '../../../Utils/CssVariables';
+import { cssBreakpoints as bp } from '../../../Utils/CssVariables';
 
-const itemCfg = {
-  rowStart: 'auto',
-  rowSpan: 'auto',
-  colStart: 'auto',
-  colSpan: 'auto',
-};
-
-const StyledItemDiv = styled.div`
+const StyledGridItem = styled.div`
   ${(props) => `
   display: ${props.hideMobile ? 'none' : 'grid'};
+  ${props.align ? `align-items: ${props.align};` : ''}
+  ${props.justify ? `justify-content: ${props.justify};` : ''}
   ${props.subGrid === true ? `grid-template-columns: inherit;grid-gap: inherit;` : ''}
   ${
     props.smPhone !== null
@@ -97,7 +92,6 @@ const StyledItemDiv = styled.div`
           : ``
       }
     }
-  
   `}
 `;
 const smDefault = {
@@ -110,38 +104,58 @@ const tabDefault = {
   rowStart: 'auto',
   rowSpan: 'auto',
   colStart: 'auto',
+  colSpan: 6,
+};
+const tabHzDefault = {
+  rowStart: 'auto',
+  rowSpan: 'auto',
+  colStart: 'auto',
   colSpan: 12,
 };
 
-const GridItem = ({
-  subGrid,
-  hideMobile,
-  hideDesktop,
-  smPhone,
-  phone,
-  tablet,
-  tabletHz,
-  smDesktop,
-  desktop,
-  lgDesktop,
-  className,
-  children,
-}) => (
-  <StyledItemDiv
-    smPhone={{ ...smDefault, ...smPhone }}
-    phone={phone}
-    tablet={tablet}
-    tabletHz={{ ...tabDefault, ...tabletHz }}
-    smDesktop={smDesktop}
-    desktop={desktop}
-    lgDesktop={lgDesktop}
-    className={className}
-    subGrid={subGrid}
-    hideMobile={hideMobile}
-    hideDesktop={hideDesktop}
-  >
-    {children}
-  </StyledItemDiv>
+// eslint-disable-next-line react/display-name
+const GridItem = forwardRef(
+  (
+    {
+      subGrid,
+      hideMobile,
+      hideDesktop,
+      smPhone,
+      phone,
+      tablet,
+      tabletHz,
+      smDesktop,
+      desktop,
+      lgDesktop,
+      className,
+      children,
+      align,
+      justify,
+      cssClasses,
+      ...rest
+    },
+    ref,
+  ) => (
+    <StyledGridItem
+      smPhone={{ ...smDefault, ...smPhone }}
+      phone={phone}
+      tablet={{ ...tabDefault, ...tablet }}
+      tabletHz={{ ...tabDefault, ...tabletHz }}
+      smDesktop={smDesktop}
+      desktop={desktop}
+      lgDesktop={lgDesktop}
+      className={`${className} ${cssClasses}`}
+      subGrid={subGrid}
+      hideMobile={hideMobile}
+      hideDesktop={hideDesktop}
+      align={align}
+      justify={justify}
+      {...rest}
+      ref={ref}
+    >
+      {children}
+    </StyledGridItem>
+  ),
 );
 
 const itemCfgTypes = {
@@ -164,6 +178,9 @@ GridItem.propTypes = {
   hideMobile: PropTypes.bool,
   hideDesktop: PropTypes.bool,
   className: PropTypes.string,
+  align: PropTypes.string,
+  justify: PropTypes.string,
+  cssClasses: PropTypes.string,
 };
 
 GridItem.defaultProps = {
@@ -178,6 +195,9 @@ GridItem.defaultProps = {
   hideMobile: false,
   hideDesktop: false,
   className: '',
+  align: '',
+  justify: '',
+  cssClasses: '',
 };
 
 export default GridItem;
