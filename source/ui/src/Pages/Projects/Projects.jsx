@@ -2,10 +2,10 @@ import React from 'react';
 import Grid from '../../Components/Grid';
 import GridItem from '../../Components/Grid/GridItem';
 
-const Contact = () => (
+const Projects = () => (
   <Grid>
-    <GridItem>Contact Me</GridItem>
+    <GridItem>My Projects</GridItem>
   </Grid>
 );
 
-export default Contact;
+export default Projects;

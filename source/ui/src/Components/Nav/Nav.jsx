@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import { cssBreakpoints as cssBp, breakpoints as bp, color as c } from '../../Utils/CssVariables';
 import GridItem from '../Grid/GridItem';
 import Grid from '../Grid';
 import Logo from '../Logo';
-import useWindowSize from '../../Hooks';
 import Burger from './Burger';
+import NavItems from './NavItems';
 import s from './Nav.module.scss';
 
 const MobileGridMenu = styled(GridItem).attrs((props) => ({
@@ -62,63 +64,9 @@ const MobileNavMenuButton = styled.button`
   }
 `;
 
-const NavLink = styled(Link).attrs((props) => {})`
-  color: ${c.BLUE};
-  &:hover {
-    color: ${c.BLUE_LITE};
-    text-decoration: underline;
-  }
-
-  @media ${cssBp.TABLET} {
-    text-align: right;
-  }
-`;
-
-const NavItems = ({ callback }) => (
-  <>
-    <GridItem
-      smPhone={{ colSpan: 4 }}
-      tablet={{ colStart: 3, colSpan: 1 }}
-      tabletHz={{ colStart: 9, colSpan: 1 }}
-    >
-      <NavLink to="/" onClick={() => callback(false)}>
-        Home
-      </NavLink>
-    </GridItem>
-    <GridItem
-      smPhone={{ colSpan: 4 }}
-      tablet={{ colStart: 4, colSpan: 1 }}
-      tabletHz={{ colStart: 10, colSpan: 1 }}
-    >
-      <NavLink to="/contact" onClick={() => callback(false)}>
-        About
-      </NavLink>
-    </GridItem>
-    <GridItem
-      smPhone={{ colSpan: 4 }}
-      tablet={{ colStart: 5, colSpan: 1 }}
-      tabletHz={{ colStart: 11, colSpan: 1 }}
-    >
-      <NavLink to="/contact" onClick={() => callback(false)}>
-        Projects
-      </NavLink>
-    </GridItem>
-    <GridItem
-      smPhone={{ colSpan: 4 }}
-      tablet={{ colStart: 6, colSpan: 1 }}
-      tabletHz={{ colStart: 12, colSpan: 1 }}
-    >
-      <NavLink to="/contact" onClick={() => callback(false)}>
-        Contact
-      </NavLink>
-    </GridItem>
-  </>
-);
-
-const Nav = () => {
+const Nav = ({ windowWidth }) => {
   /* *********************** States and Hooks ***************************
    *********************************************************************** */
-  const windowSize = useWindowSize();
   const menuRef = useRef();
   const menuBtnGridItemRef = useRef();
   const menuBtnRef = useRef();
@@ -128,6 +76,8 @@ const Nav = () => {
 
   /* ****************************** Handlers ******************************
    *********************************************************************** */
+  const navItemClickCallback = (show) => setDisplayMobileNav(show);
+
   const handleOutsideMenuClick = (e) => {
     e.stopPropagation();
     if (
@@ -136,11 +86,11 @@ const Nav = () => {
       !menuBtnRef.current.contains(e.target) &&
       !burgerRef.current.contains(e.target)
     )
-      setDisplayMobileNav(false);
+      navItemClickCallback(false);
   };
   const handleOnClick = (e) => {
     e.stopPropagation();
-    setDisplayMobileNav(!displayMobileNav);
+    navItemClickCallback(!displayMobileNav);
   };
 
   /* ****************************** Effects *******************************
@@ -152,10 +102,10 @@ const Nav = () => {
     }
   }, [displayMobileNav]);
   useEffect(() => {
-    if (windowSize >= bp.TABLET) {
+    if (windowWidth >= bp.TABLET) {
       setDisplayMobileNav(false);
     }
-  }, [windowSize, setDisplayMobileNav]);
+  }, [windowWidth, setDisplayMobileNav]);
 
   /* **************************** Render *********************************
    *********************************************************************** */
@@ -163,12 +113,12 @@ const Nav = () => {
     <nav>
       <Grid>
         <GridItem smPhone={{ colSpan: 2 }} tablet={{ colSpan: 1 }} tabletHz={{ colSpan: 2 }}>
-          <Link to="/" title="home" onClick={() => setDisplayMobileNav(false)}>
+          <Link to="/" title="home" onClick={() => navItemClickCallback(false)}>
             <Logo aria-hidden />
           </Link>
         </GridItem>
 
-        {windowSize < bp.TABLET ? (
+        {windowWidth < bp.TABLET ? (
           <>
             <MobileNavGridItem
               smPhone={{ colSpan: 2 }}
@@ -185,6 +135,7 @@ const Nav = () => {
                 aria-pressed={displayMobileNav}
                 aria-label={`${displayMobileNav ? 'close' : 'open'} the navigation menu`}
                 ref={menuBtnRef}
+                data-testid="burger-button"
               >
                 <Burger clicked={displayMobileNav} ref={burgerRef} />
               </MobileNavMenuButton>
@@ -199,16 +150,22 @@ const Nav = () => {
               tabletHz={{ colStart: 3, colSpan: 10 }}
               show={displayMobileNav}
               cssClasses={displayMobileNav ? s.expanded : ''}
+              data-testid="mobile-nav-menu"
+              hidden={!displayMobileNav}
             >
-              <NavItems callback={(show) => setDisplayMobileNav(show)} />
+              <NavItems callback={navItemClickCallback} windowWidth={windowWidth} />
             </MobileGridMenu>
           </>
         ) : (
-          <NavItems callback={(show) => setDisplayMobileNav(show)} />
+          <NavItems callback={navItemClickCallback} displayMobileNav={displayMobileNav} />
         )}
       </Grid>
     </nav>
   );
+};
+
+Nav.propTypes = {
+  windowWidth: PropTypes.number.isRequired,
 };
 
 export default Nav;

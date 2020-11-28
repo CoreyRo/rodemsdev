@@ -40,7 +40,7 @@ const BotRect = styled(BaseRect)`
 
 // eslint-disable-next-line react/display-name
 const Burger = forwardRef(({ clicked }, ref) => (
-  <Svg viewBox="0 0 100 80" aria-hidden ref={ref}>
+  <Svg viewBox="0 0 100 80" aria-hidden ref={ref} data-testid="burger-svg">
     <TopRect className={clicked ? 'clicked' : ''} />
     <MidRect className={clicked ? 'clicked' : ''} />
     <BotRect className={clicked ? 'clicked' : ''} />
