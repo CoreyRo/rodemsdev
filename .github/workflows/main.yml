@@ -64,6 +64,7 @@ jobs:
       working-directory: ./source/ui
       run: yarn build --if-present
 
+name: Deploy-Master
 
 on:
   push:
