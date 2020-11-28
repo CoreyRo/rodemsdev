@@ -94,23 +94,19 @@ const StyledGridItem = styled.div`
     }
   `}
 `;
+
 const smDefault = {
   rowStart: 'auto',
   rowSpan: 'auto',
   colStart: 'auto',
   colSpan: 4,
 };
+
 const tabDefault = {
   rowStart: 'auto',
   rowSpan: 'auto',
   colStart: 'auto',
   colSpan: 6,
-};
-const tabHzDefault = {
-  rowStart: 'auto',
-  rowSpan: 'auto',
-  colStart: 'auto',
-  colSpan: 12,
 };
 
 // eslint-disable-next-line react/display-name

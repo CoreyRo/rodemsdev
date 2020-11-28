@@ -1,5 +1,4 @@
-import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
-import { waitFor } from '@testing-library/dom';
+import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
