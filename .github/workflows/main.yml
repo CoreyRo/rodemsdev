@@ -78,6 +78,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
     - name: yarn build
       working-directory: ./source/ui
       run: yarn build --if-present
@@ -95,6 +102,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        
     - name: yarn deploy
       working-directory: ./source/ui
       run: yarn deploy
