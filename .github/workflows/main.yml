@@ -14,8 +14,8 @@ on:
       - created
 
 jobs:
-  test:
-    name: TEST
+  cache-or-install:
+    name: CACHE OR INSTALL
     runs-on: ubuntu-latest
         
     strategy:
@@ -41,6 +41,29 @@ jobs:
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
 
+  test:
+    name: TEST
+    runs-on: ubuntu-latest
+    needs: [cache-or-install]
+        
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
     - name: yarn test:ci
       working-directory: ./source/ui
       run: yarn test:ci
@@ -65,7 +88,7 @@ jobs:
   build: 
     name: BUILD
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [cache-or-install, test]
 
     strategy:
       matrix:
@@ -85,11 +108,6 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: yarn install
-      working-directory: ./source/ui
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile
-
     - name: yarn build
       working-directory: ./source/ui
       run: yarn build --if-present
@@ -97,7 +115,7 @@ jobs:
   deploy: 
     name: DEPLOY
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: [cache-or-install, test, build]
     if: github.ref == 'refs/heads/master'
 
     steps:
@@ -108,17 +126,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - uses: actions/cache@v2
-      name: cache node modules
+      name: Cached Node Modules
       id: yarn-cache
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: yarn install
-      working-directory: ./source/ui
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile
-
-    - name: yarn deploy
-      working-directory: ./source/ui
-      run: yarn deploy --if-present
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./source/ui/build
+        cname: rodems.dev
+        keep_files: true
