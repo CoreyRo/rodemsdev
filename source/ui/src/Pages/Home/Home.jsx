@@ -4,7 +4,7 @@ import GridItem from '../../Components/Grid/GridItem';
 
 const Home = () => (
   <Grid>
-    <GridItem>Hello World</GridItem>
+    <GridItem>Hello World!</GridItem>
   </Grid>
 );
 
