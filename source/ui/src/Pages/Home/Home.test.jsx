@@ -6,7 +6,7 @@ describe('Home page tests', () => {
 
   test('renders Home page', () => {
     render(<Home />);
-    const helloWorld = screen.getByText('Hello World');
+    const helloWorld = screen.getByText('Hello World!');
     expect(helloWorld).toBeInTheDocument();
   });
 });
