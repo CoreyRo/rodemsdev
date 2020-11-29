@@ -131,14 +131,11 @@ jobs:
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-        
-    - name: yarn build
-      working-directory: ./source/ui
-      run: yarn build --if-present
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
+      working-directory: ./source/ui
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./source/ui/build
+        publish_dir: ./build
         cname: rodems.dev
