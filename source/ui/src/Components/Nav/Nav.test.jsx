@@ -93,14 +93,6 @@ describe('Nav component tests', () => {
         },
         { timeout: 500 },
       );
-
-      await waitFor(
-        async () => {
-          const mobileNavMenu = container.querySelector('[data-testid="mobile-nav-menu"]');
-          expect(mobileNavMenu).not.toBeVisible();
-        },
-        { timeout: 1000 },
-      );
     });
   });
 });
