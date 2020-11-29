@@ -138,4 +138,3 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./source/ui/build
         cname: rodems.dev
-        keep_files: true
