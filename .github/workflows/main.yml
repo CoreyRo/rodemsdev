@@ -126,11 +126,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - uses: actions/cache@v2
-      name: cache node modules
+      name: Cached Node Modules
       id: yarn-cache
       with:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        
+    - name: yarn build
+      working-directory: ./source/ui
+      run: yarn build --if-present
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
