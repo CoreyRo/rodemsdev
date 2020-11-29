@@ -89,9 +89,10 @@ jobs:
       working-directory: ./source/ui
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
-        - name: yarn build
-          working-directory: ./source/ui
-          run: yarn build --if-present
+
+    - name: yarn build
+      working-directory: ./source/ui
+      run: yarn build --if-present
 
   deploy: 
     name: DEPLOY
@@ -117,6 +118,7 @@ jobs:
       working-directory: ./source/ui
       if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
-        - name: yarn deploy
-          working-directory: ./source/ui
-          run: yarn deploy --if-present
+
+    - name: yarn deploy
+      working-directory: ./source/ui
+      run: yarn deploy --if-present
