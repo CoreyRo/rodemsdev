@@ -2,10 +2,10 @@ import React from 'react';
 import Grid from '../../Components/Grid';
 import GridItem from '../../Components/Grid/GridItem';
 
-const Home = () => (
+const About = () => (
   <Grid>
-    <GridItem>Hello World</GridItem>
+    <GridItem>About Me</GridItem>
   </Grid>
 );
 
-export default Home;
+export default About;

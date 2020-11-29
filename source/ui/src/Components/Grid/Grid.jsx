@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { breakpoints as bp } from '../../Utils/CssVariables';
+import { cssBreakpoints as cssBp } from '../../Utils/CssVariables';
 
 const StyledDiv = styled.div`
   display: grid;
@@ -9,30 +9,31 @@ const StyledDiv = styled.div`
   padding: 16px;
   grid-gap: 1rem;
 
-  @media ${bp.PHONE} {
+  @media ${cssBp.PHONE} {
     ${(props) => (props.noPadding ? '' : 'padding: 32px;')}
   }
 
-  @media ${bp.TABLET} {
+  @media ${cssBp.TABLET} {
+    grid-template-columns: repeat(6, 1fr);
   }
 
-  @media ${bp.TABLET_LANDSCAPE} {
+  @media ${cssBp.TABLET_LANDSCAPE} {
     grid-template-columns: repeat(12, 1fr);
   }
 
-  @media ${bp.SM_DESKTOP} {
+  @media ${cssBp.SM_DESKTOP} {
   }
 
-  @media ${bp.DESKTOP} {
+  @media ${cssBp.DESKTOP} {
   }
 
-  @media ${bp.DESKTOP_MAX} {
+  @media ${cssBp.DESKTOP_MAX} {
     margin: 0 auto;
     ${(props) => (props.noPadding ? '' : 'padding: 32px 0;')}
     ${(props) => (props.noPadding ? '' : 'max-width: 1680px;')}
   }
 
-  @media ${bp.LG_DESKTOP} {
+  @media ${cssBp.LG_DESKTOP} {
   }
 `;
 

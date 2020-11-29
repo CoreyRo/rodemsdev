@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { color as c } from '../../Utils/CssVariables';
 
 const LogoSpan = styled.span`
   font-family: 'Fira Code', monospace;
@@ -8,15 +9,15 @@ const LogoSpan = styled.span`
 `;
 
 const BlueText = styled(LogoSpan)`
-  color: #049cfc;
+  color: ${c.BLUE};
 `;
 
 const YellowText = styled(LogoSpan)`
-  color: #f8f8af;
+  color: ${c.YELLOW};
 `;
 
-const Logo = ({ size }) => (
-  <LogoSpan size={size}>
+const Logo = ({ size, ...rest }) => (
+  <LogoSpan size={size} {...rest}>
     <BlueText>rodems</BlueText>
     <span>.</span>
     <YellowText>dev</YellowText>
