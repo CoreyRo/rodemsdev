@@ -121,4 +121,4 @@ jobs:
 
     - name: yarn deploy
       working-directory: ./source/ui
-      run: yarn deploy --if-present
+      run: yarn deploy
