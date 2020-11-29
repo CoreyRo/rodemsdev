@@ -25,8 +25,6 @@ body {
   font-family: Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, -apple-system, BlinkMacSystemFont, Helvetica Neue, sans-serif;
   font-size: 16px;
-  color: rgb(241, 241, 241);
-  background-color: #2c2c2c;
 }
 
 body,
@@ -91,4 +89,3 @@ code {
     scroll-behavior: auto !important;
   }
 }
-

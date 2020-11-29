@@ -16,12 +16,16 @@ const YellowText = styled(LogoSpan)`
   color: ${c.YELLOW};
 `;
 
+const WhiteText = styled(LogoSpan)`
+  color: ${c.LIGHTEST};
+`;
+
 const Logo = ({ size, ...rest }) => (
   <LogoSpan size={size} {...rest}>
     <BlueText>rodems</BlueText>
-    <span>.</span>
+    <WhiteText>.</WhiteText>
     <YellowText>dev</YellowText>
-    <span>();</span>
+    <WhiteText>();</WhiteText>
   </LogoSpan>
 );
 
