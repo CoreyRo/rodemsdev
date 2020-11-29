@@ -132,6 +132,10 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
+    - name: yarn build
+      working-directory: ./source/ui
+      run: yarn build --if-present
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
