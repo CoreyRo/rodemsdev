@@ -72,6 +72,23 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: yarn install
+      working-directory: ./source/ui
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
         - name: yarn build
           working-directory: ./source/ui
           run: yarn build --if-present
@@ -83,6 +100,23 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: actions/cache@v2
+      name: cache node modules
+      id: yarn-cache
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+    - name: yarn install
+      working-directory: ./source/ui
+      if: steps.yarn-cache.outputs.cache-hit != 'true'
+      run: yarn install --frozen-lockfile
         - name: yarn deploy
           working-directory: ./source/ui
           run: yarn deploy --if-present
