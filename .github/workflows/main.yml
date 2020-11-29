@@ -62,10 +62,6 @@ jobs:
         yml: ./codecov.yml
         fail_ci_if_error: true
 
-    - name: yarn build
-      working-directory: ./source/ui
-      run: yarn build --if-present
-
   build: 
     name: BUILD
     runs-on: ubuntu-latest
