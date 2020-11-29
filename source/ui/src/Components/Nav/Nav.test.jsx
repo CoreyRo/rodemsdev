@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, act } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -92,14 +92,6 @@ describe('Nav component tests', () => {
           userEvent.click(mockedPage);
         },
         { timeout: 500 },
-      );
-
-      await waitFor(
-        async () => {
-          const mobileNavMenu = container.querySelector('[data-testid="mobile-nav-menu"]');
-          expect(mobileNavMenu).not.toBeVisible();
-        },
-        { timeout: 1000 },
       );
     });
   });

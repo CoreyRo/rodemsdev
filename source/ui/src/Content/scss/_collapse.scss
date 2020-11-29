@@ -1,0 +1,16 @@
+.collasper {
+  height: auto;
+  padding: 0 32px;
+  max-height: 100vh;
+  overflow: hidden;
+  transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  -webkit-transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; 
+  -moz-transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; 
+  -ms-transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; 
+  -o-transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; 
+
+  &.collapsed {
+    max-height: 0;
+  }
+}
+

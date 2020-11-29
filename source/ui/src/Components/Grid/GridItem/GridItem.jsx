@@ -4,22 +4,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { cssBreakpoints as bp } from '../../../Utils/CssVariables';
 
-const StyledGridItem = styled.div`
+const StyledGridItem = styled.div.attrs((props) => ({ display: props.flex ? 'flex' : 'grid' }))`
   ${(props) => `
-  display: ${props.hideMobile ? 'none' : 'grid'};
+  display: ${props.hideMobile ? 'none' : props.display};
+
   ${props.align ? `align-items: ${props.align};` : ''}
   ${props.justify ? `justify-content: ${props.justify};` : ''}
   ${props.subGrid === true ? `grid-template-columns: inherit;grid-gap: inherit;` : ''}
-  ${
-    props.smPhone !== null
-      ? `
-      grid-area: ${!isNaN(props.smPhone.rowStart) ? `${props.smPhone.rowStart}` : 'auto'} /
-      ${!isNaN(props.smPhone.colStart) ? `${props.smPhone.colStart}` : 'auto'} / 
-        ${!isNaN(props.smPhone.rowSpan) ? `span ${props.smPhone.rowSpan}` : 'auto'} / 
-        ${!isNaN(props.smPhone.colSpan) ? `span ${props.smPhone.colSpan}` : 'auto'};
-  `
-      : `grid-area: auto / auto / auto / span 4`
-  }
+  grid-area: ${!isNaN(props.smPhone.rowStart) ? `${props.smPhone.rowStart}` : 'auto'} /
+  ${!isNaN(props.smPhone.colStart) ? `${props.smPhone.colStart}` : 'auto'} / 
+    ${!isNaN(props.smPhone.rowSpan) ? `span ${props.smPhone.rowSpan}` : 'auto'} / 
+    ${!isNaN(props.smPhone.colSpan) ? `span ${props.smPhone.colSpan}` : 'auto'};
     @media ${bp.PHONE} {
       ${
         props.phone !== null
@@ -34,20 +29,14 @@ const StyledGridItem = styled.div`
     }
 
     @media ${bp.TABLET} {
-      ${
-        props.tablet !== null
-          ? `
       grid-area: ${!isNaN(props.tablet.rowStart) ? `${props.tablet.rowStart}` : 'auto'} /
       ${!isNaN(props.tablet.colStart) ? `${props.tablet.colStart}` : 'auto'} / 
         ${!isNaN(props.tablet.rowSpan) ? `span ${props.tablet.rowSpan}` : 'auto'} / 
         ${!isNaN(props.tablet.colSpan) ? `span ${props.tablet.colSpan}` : 'auto'};
-      `
-          : ``
-      }
     }
 
     @media ${bp.TABLET_LANDSCAPE} {
-      display: ${props.hideDesktop ? 'none' : 'grid'};
+      display: ${props.hideDesktop ? 'none' : props.display};
       grid-area: ${!isNaN(props.tabletHz.rowStart) ? `${props.tabletHz.rowStart}` : 'auto'} /
       ${!isNaN(props.tabletHz.colStart) ? `${props.tabletHz.colStart}` : 'auto'} / 
         ${!isNaN(props.tabletHz.rowSpan) ? `span ${props.tabletHz.rowSpan}` : 'auto'} / 
@@ -128,6 +117,7 @@ const GridItem = forwardRef(
       align,
       justify,
       cssClasses,
+      flex,
       ...rest
     },
     ref,
@@ -146,6 +136,7 @@ const GridItem = forwardRef(
       hideDesktop={hideDesktop}
       align={align}
       justify={justify}
+      flex={flex}
       {...rest}
       ref={ref}
     >
@@ -176,6 +167,7 @@ GridItem.propTypes = {
   className: PropTypes.string,
   align: PropTypes.string,
   justify: PropTypes.string,
+  flex: PropTypes.bool,
   cssClasses: PropTypes.string,
 };
 
@@ -194,6 +186,7 @@ GridItem.defaultProps = {
   align: '',
   justify: '',
   cssClasses: '',
+  flex: false,
 };
 
 export default GridItem;
