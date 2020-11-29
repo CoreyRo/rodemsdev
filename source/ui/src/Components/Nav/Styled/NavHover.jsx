@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {
-  cssBreakpoints as cssBp,
-  breakpoints as bp,
-  color as c,
-} from '../../../Utils/CssVariables';
+import { color as c } from '../../../Utils/CssVariables';
 
 const NavHover = styled(Link)`
   position: relative;

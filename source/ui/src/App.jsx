@@ -1,7 +1,7 @@
 import './App.css';
 import { HashRouter, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import { color as c, breakpoints as bp } from './Utils/CssVariables';
+import { color as c } from './Utils/CssVariables';
 import Nav from './Components/Nav';
 import Home from './Pages/Home';
 import useWindowWidth from './Hooks/useWindowWidth';
